@@ -1,0 +1,27 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div class="create-prodoct-form">
+    <ul>
+      <li>
+        <span>Category</span>
+        <input type="text" name="category" formControlName="category">
+      </li>
+      <li>
+        <span>Id</span>
+        <input type="text" name="id" formControlName="id">
+      </li>
+      <li>
+        <span>Name</span>
+        <input type="text" name="name" formControlName="name">
+      </li>
+      <li>
+        <span>Price</span>
+        <input type="text" name="price" formControlName="price">
+      </li>
+      <li>
+          <input type="submit">
+    <input type="reset">
+      </li>
+    </ul>
+    
+  </div>
+</form>

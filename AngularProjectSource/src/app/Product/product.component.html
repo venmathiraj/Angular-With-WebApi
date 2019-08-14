@@ -1,0 +1,49 @@
+<button (click)="createProduct()">Create Product</button>
+
+<app-create-product *ngIf="loadCreateProductComponent; else loadShowproductComponent"
+  (setLoadOrShow)="setLoadOrShow($event)"></app-create-product>
+<ng-template #loadShowproductComponent>
+
+  <table *ngIf="productData; else error">
+    <tr>
+      <th>Category</th>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+    <tr *ngFor="let product of productData; let i=index;">
+      <td>
+        <div *ngIf="!product.isEditable">{{product.Category}}</div>
+        <div *ngIf="product.isEditable">
+          <input type="text" name="Category" value="{{product.Category}}" [(ngModel)]="product.Category">
+        </div>
+      </td>
+      <td>{{product.Id}}</td>
+      <td>
+
+        <div *ngIf="!product.isEditable">{{product.Name}}</div>
+        <div *ngIf="product.isEditable">
+          <input type="text" name="name" value="{{product.Name}}" [(ngModel)]="product.Name">
+        </div>
+
+      </td>
+      <td>
+        <div *ngIf="!product.isEditable">{{product.Price | currency}}</div>
+        <div *ngIf="product.isEditable">
+          <input type="text" name="name" value="{{product.currency}}" [(ngModel)]="product.currency">
+        </div>
+      </td>
+      <td>
+        <div *ngIf="!product.isEditable">
+          <button (click)="editProduct(i)">Edit</button>
+        </div>
+        <div *ngIf="product.isEditable">
+          <button (click)="updateProduct(i)">Save</button>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div template="error">{{error}}</div>
+
+</ng-template>
